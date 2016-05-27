@@ -8,7 +8,7 @@ namespace PROGRAM_1
 {
     class Figure
     {
-        List<Point> pList;
+       protected List<Point> pList;
 
         public void Drow()
         {

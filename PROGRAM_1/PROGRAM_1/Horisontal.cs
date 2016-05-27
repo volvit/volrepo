@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace PROGRAM_1
 {
-    class Horisontal
+    class Horisontal : Figure
     {
-        List<Point> pList;
 
         public Horisontal(int xLeft, int xRight,int y, char sym)
         {
@@ -21,14 +20,6 @@ namespace PROGRAM_1
 
         }
 
-        public void Drow()
-        {
-            foreach(Point p in pList)
-            {
-                p.Draw();
-            }
-
-        }
-
     }
+
 }

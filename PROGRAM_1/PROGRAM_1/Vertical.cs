@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace PROGRAM_1
 {
-    class Vertical
+    class Vertical : Figure
     {
-        List<Point> pList;
 
         public Vertical(int yUp, int yDown, int x, char sym)
         {
@@ -17,15 +16,6 @@ namespace PROGRAM_1
             {
                 Point p = new Point(x, y, sym);
                 pList.Add(p);
-            }
-
-        }
-
-        public void Drow()
-        {
-            foreach(Point p in pList)
-            {
-                p.Draw();
             }
 
         }
