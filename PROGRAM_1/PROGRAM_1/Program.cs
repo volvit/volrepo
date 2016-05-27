@@ -10,12 +10,12 @@ namespace PROGRAM_1
     {
         static void Main(string[] args)
         {
-            ConsoleColor prevColor = Console.BackgroundColor;
-            Console.BackgroundColor = ConsoleColor.DarkRed;
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.SetBufferSize(100,50);
+
+            Horisontal line = new Horisontal(5, 10, 8, '*');
+            line.Drow();
 
             Console.ReadLine();
-
         }
     }
 }
