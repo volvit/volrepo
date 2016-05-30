@@ -68,5 +68,10 @@ namespace PROGRAM_1
             Draw();
         }
 
-    }
+        public override string ToString()
+ 		{
+ 			return x + ", " + y + ", " + sym;
+ 		}
+
+      }
 }

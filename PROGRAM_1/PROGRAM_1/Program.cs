@@ -13,18 +13,13 @@ namespace PROGRAM_1
         {
             Console.SetBufferSize(100,50);
 
-            Horisontal upLine = new Horisontal(0, 98, 0, '=');
-            Horisontal downLine = new Horisontal(0, 98, 49, '=');
-            Vertical leftLine = new Vertical(0, 49, 0, 'l');
-            Vertical rightLine = new Vertical(0, 49, 98, 'l');
-            upLine.Drow();
-            downLine.Drow();
-            leftLine.Drow();
-            rightLine.Drow();
+            Walls walls = new Walls(100, 50);
+            walls.Draw();
+
 
             Point p = new Point(4, 5, '*');
             Snake snake = new Snake(p, 4, Direction.RIGHT);
-            snake.Drow();
+            snake.Draw();
 
             FoodCreator foodCreator = new FoodCreator(100, 50, '@');
             Point food = foodCreator.CreateFood();
@@ -32,7 +27,12 @@ namespace PROGRAM_1
 
             while(true)
             {
-             if (snake.Eat(food))
+                if (walls.IsHit(snake) || snake.IsHitTail())
+                {
+                    break;
+                }
+
+                if (snake.Eat(food))
                 {
                     food = foodCreator.CreateFood();
                     food.Draw();
@@ -42,7 +42,7 @@ namespace PROGRAM_1
                     snake.Move();
                 }
 
-                Thread.Sleep(200);
+                Thread.Sleep(100);
 
                 if (Console.KeyAvailable)
                 {
@@ -50,9 +50,33 @@ namespace PROGRAM_1
                     snake.Handlekey(key.Key);
                 }
 
-                snake.Move();
             }
+            WriteGameOver();
+            Console.ReadLine();
             
         }
+
+        static void WriteGameOver()
+        {
+            int xOffset = 25;
+            int yOffset = 8;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition(xOffset, yOffset++);
+            WriteText("======================================================", xOffset, yOffset++);
+            WriteText("ППППП  РРР    ООО   И  ИИ  ГГГГГ  РРР    ААА    ЛЛЛЛ", xOffset + 1, yOffset++);
+            WriteText("П   П  Р  Р  О   О  И И И  Г      Р  Р  А   А   Л  Л", xOffset + 1, yOffset++);
+            WriteText("П   П  РРР   О   О  И И И  Г      РРР   ААААА   Л  Л", xOffset + 1, yOffset++);
+            WriteText("П   П  Р     О   О  И И И  Г      Р     А   А   Л  Л", xOffset + 1, yOffset++);
+            WriteText("П   П  Р      ООО   ИИ  И  Г      Р     А   А  Л   Л", xOffset + 1, yOffset++);
+            WriteText("======================================================", xOffset, yOffset++);
+        }
+
+        static void WriteText(String text, int xOffset, int yOffset)
+        {
+            Console.SetCursorPosition(xOffset, yOffset);
+            Console.WriteLine(text);
+        }
+
+
     }
 }
